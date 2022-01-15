@@ -10,15 +10,18 @@ public class BirdController : MonoBehaviour
 
     private Rigidbody2D birdRgbd;
     private bool dead;
-    [SerializeField] private Vector2 force;
     private PipeInfiniteScroll pipeInfiniteScroll;
+
+    [SerializeField] private Vector2 force;
     
     [SerializeField] private float contagemPosMorte;
     [SerializeField] private float contagemStart;
     
+    [SerializeField] private float teto;
 
     [SerializeField] protected UnityEvent onDeath;
     [HideInInspector] public Action <int> onScorePoint;
+
 
 
     
@@ -45,7 +48,7 @@ public class BirdController : MonoBehaviour
 
     public void Flap()
     {
-        if(dead == false && contagemStart <= 0)
+        if(dead == false && contagemStart <= 0 && transform.position.y < teto)
         {
             Debug.Log("Flap");
             pipeInfiniteScroll.enabled = true;
