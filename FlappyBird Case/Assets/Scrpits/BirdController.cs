@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using System;
 
 public class BirdController : MonoBehaviour
 {
@@ -12,23 +12,24 @@ public class BirdController : MonoBehaviour
     private bool dead;
     [SerializeField] private Vector2 force;
     private PipeInfiniteScroll pipeInfiniteScroll;
-    [SerializeField] private Text score;
+    
     [SerializeField] private float contagemPosMorte;
     [SerializeField] private float contagemStart;
-    private int currentScore;
+    
 
     [SerializeField] protected UnityEvent onDeath;
+    [HideInInspector] public Action <int> onScorePoint;
 
 
-    // Start is called before the first frame update
+    
     void Start()
     {
-        currentScore = 0;
+        
         birdRgbd = GetComponent<Rigidbody2D>();
         pipeInfiniteScroll = FindObjectOfType<PipeInfiniteScroll>();
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         if (contagemStart > 0) contagemStart -= 1 * Time.deltaTime;
@@ -75,11 +76,7 @@ public class BirdController : MonoBehaviour
 
     }
 
-    private void Score()
-    {
-        currentScore++;
-        score.text = currentScore.ToString();
-    }
+    
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -93,7 +90,8 @@ public class BirdController : MonoBehaviour
     {
         if (collision.CompareTag("Score"))
         {
-            Score();
+            
+            onScorePoint?.Invoke(1);
             collision.GetComponent<BoxCollider2D>().enabled = false;
         }
             
