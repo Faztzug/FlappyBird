@@ -2004,22 +2004,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 265612264, guid: 64b31cae4f7c9ea409bc51aaf53cfd11, type: 3}
+      propertyPath: m_GravityScale
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 265612265, guid: 64b31cae4f7c9ea409bc51aaf53cfd11, type: 3}
       propertyPath: score
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 265612265, guid: 64b31cae4f7c9ea409bc51aaf53cfd11, type: 3}
+      propertyPath: getReadyFlapMove.y
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 265612265, guid: 64b31cae4f7c9ea409bc51aaf53cfd11, type: 3}
       propertyPath: pipeInfiniteScroll
       value: 
       objectReference: {fileID: 1567755038}
-    - target: {fileID: 265612265, guid: 64b31cae4f7c9ea409bc51aaf53cfd11, type: 3}
-      propertyPath: onBegun.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 265612265, guid: 64b31cae4f7c9ea409bc51aaf53cfd11, type: 3}
-      propertyPath: onBegun.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 265612265, guid: 64b31cae4f7c9ea409bc51aaf53cfd11, type: 3}
       propertyPath: onBegun.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -2028,22 +2028,6 @@ PrefabInstance:
       propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 516885460}
-    - target: {fileID: 265612265, guid: 64b31cae4f7c9ea409bc51aaf53cfd11, type: 3}
-      propertyPath: onBegun.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 265612265, guid: 64b31cae4f7c9ea409bc51aaf53cfd11, type: 3}
-      propertyPath: onBegun.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Begun
-      objectReference: {fileID: 0}
-    - target: {fileID: 265612265, guid: 64b31cae4f7c9ea409bc51aaf53cfd11, type: 3}
-      propertyPath: onBegun.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: GetReady, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 265612265, guid: 64b31cae4f7c9ea409bc51aaf53cfd11, type: 3}
-      propertyPath: onBegun.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 6774873310612852688, guid: 64b31cae4f7c9ea409bc51aaf53cfd11, type: 3}
       propertyPath: m_RootOrder
       value: 1

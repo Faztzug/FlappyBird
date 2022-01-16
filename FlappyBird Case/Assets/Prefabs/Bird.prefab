@@ -49,6 +49,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   force: {x: 0, y: 7}
   rotation: 300
+  gravity: 2.5
+  getReadyFlapTime: 0.3
+  getReadyFlapMove: {x: 0, y: 0.6}
   contagemPosMorte: 1
   contagemStart: 1
   teto: 4.5
@@ -67,6 +70,21 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
+        m_CallState: 2
+  onBegun:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: GetReady, Assembly-CSharp
+        m_MethodName: Begun
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!212 &3965501729872857664
 SpriteRenderer:

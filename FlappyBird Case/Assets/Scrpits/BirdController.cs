@@ -15,6 +15,12 @@ public class BirdController : MonoBehaviour
 
     [SerializeField] private Vector2 force;
     [SerializeField] private float rotation;
+    [SerializeField] private float gravity;
+
+    [SerializeField] private float getReadyFlapTime;
+    [SerializeField] private Vector2 getReadyFlapMove;
+    private float getReadyFlapTimeCounter;
+    private bool getReadyFlapUp = true;
 
     [SerializeField] private float contagemPosMorte;
     [SerializeField] private float contagemStart;
@@ -40,6 +46,8 @@ public class BirdController : MonoBehaviour
     
     void Update()
     {
+        
+
         if (contagemStart > 0) contagemStart -= 1 * Time.deltaTime;
 
         if (dead)
@@ -53,8 +61,33 @@ public class BirdController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(dead == false)
+        GetReadyMove();
+
+        if (dead == false)
         birdRgbd.MoveRotation((rotation * birdRgbd.velocity.y) * Time.fixedDeltaTime);
+    }
+
+    private void GetReadyMove()
+    {
+        if (begun == false)
+        {
+            if (getReadyFlapTimeCounter <= getReadyFlapTime)
+            {
+                getReadyFlapTimeCounter += 1 * Time.fixedDeltaTime;
+
+                if(getReadyFlapUp == true)
+                    birdRgbd.MovePosition(birdRgbd.position + getReadyFlapMove * Time.fixedDeltaTime);
+                else
+                    birdRgbd.MovePosition(birdRgbd.position - getReadyFlapMove * Time.fixedDeltaTime);
+            } else if (getReadyFlapTimeCounter > getReadyFlapTime)
+            {
+                getReadyFlapTimeCounter = 0f;
+                getReadyFlapUp = !getReadyFlapUp;
+            }
+
+
+
+        }
     }
 
     public void Flap()
@@ -62,7 +95,12 @@ public class BirdController : MonoBehaviour
         if(dead == false && contagemStart <= 0 && transform.position.y < teto)
         {
             if(begun == false)
+            {
                 onBegun?.Invoke();
+                begun = true;
+                birdRgbd.gravityScale = gravity;
+            }
+                
 
             Debug.Log("Flap");
 
