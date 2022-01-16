@@ -7,8 +7,8 @@ using TMPro;
 public class Score : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI scoreText;
-    private int currentScore;
-    private int highScore;
+    [HideInInspector] public int currentScore;
+    
 
 
     private void Start()
