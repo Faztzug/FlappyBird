@@ -38,14 +38,12 @@ public class GameOver : MonoBehaviour
         //scoreValue = FindObjectOfType<Score>().currentScore;
         //score.text = scoreValue.ToString();
 
+        best.text = bestScore.ToString();
+
         StartCoroutine(ScoreCount(waitToScoreCount));
 
 
-        if (scoreValue > bestScore)
-            bestScore = scoreValue;
-        best.text = bestScore.ToString();
-
-        SaveGame();
+        
     }
 
     IEnumerator ScoreCount(float wait)
@@ -80,6 +78,15 @@ public class GameOver : MonoBehaviour
         else
         {
             score.text = scoreValue.ToString();
+
+            if (scoreValue > bestScore)
+            {
+                bestScore = scoreValue;
+                best.text = bestScore.ToString();
+
+                SaveGame();
+            }
+                
         }
     }
 

@@ -7,7 +7,7 @@ using TMPro;
 public class Score : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI scoreText;
-    [HideInInspector] 
+    //[HideInInspector] 
     public int currentScore;
     
 
@@ -16,6 +16,7 @@ public class Score : MonoBehaviour
     {
         BirdController birdController = FindObjectOfType<BirdController>();
         birdController.onScorePoint += onUpdateScore;
+        
 
 
         scoreText = GetComponent<TextMeshProUGUI>();
@@ -27,5 +28,10 @@ public class Score : MonoBehaviour
     {
         currentScore += value;
         scoreText.text = currentScore.ToString();
+    }
+
+    public void onGameOver()
+    {
+        scoreText.text = "";
     }
 }
