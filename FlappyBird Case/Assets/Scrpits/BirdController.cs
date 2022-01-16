@@ -18,6 +18,7 @@ public class BirdController : MonoBehaviour
     [SerializeField] private float contagemStart;
     
     [SerializeField] private float teto;
+    [SerializeField] private string gameScene = "Game";
 
     [SerializeField] protected UnityEvent onDeath;
     [HideInInspector] public Action <int> onScorePoint;
@@ -51,6 +52,8 @@ public class BirdController : MonoBehaviour
         if(dead == false && contagemStart <= 0 && transform.position.y < teto)
         {
             Debug.Log("Flap");
+
+            if(pipeInfiniteScroll != null)
             pipeInfiniteScroll.enabled = true;
 
             birdRgbd.velocity = Vector2.zero;
@@ -58,7 +61,7 @@ public class BirdController : MonoBehaviour
         } else if (dead == true && contagemPosMorte <= 0)
         {
             
-                SceneManager.LoadScene(0);
+                SceneManager.LoadScene(gameScene);
             
         }
         
