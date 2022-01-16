@@ -12,6 +12,7 @@ public class GameOver : MonoBehaviour
     private int bestScore;
     private TextMeshProUGUI score;
     private TextMeshProUGUI best;
+    [SerializeField] float timeScoreCount = 1f;
 
     private void Start()
     {

@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PlayButton : MonoBehaviour
 {
@@ -16,7 +15,7 @@ public class PlayButton : MonoBehaviour
     public void Click()
     {
         anim.SetTrigger("Play");
-        SceneManager.LoadScene(gameScene);
+        FindObjectOfType<CrossfadeLoadEffect>().ChamarCrossfade(gameScene);
         
     }
 }
