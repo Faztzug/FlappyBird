@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   force: {x: 0, y: 7}
-  rotation: 0
+  rotation: 300
   contagemPosMorte: 1
   contagemStart: 1
   teto: 4.5
@@ -56,7 +56,7 @@ MonoBehaviour:
   onDeath:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7330698688687102204, guid: e3fd8adf563197c4680d651eb54c7252, type: 3}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GameOver, Assembly-CSharp
         m_MethodName: EndGame
         m_Mode: 1

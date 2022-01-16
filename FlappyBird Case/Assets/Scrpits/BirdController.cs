@@ -11,6 +11,7 @@ public class BirdController : MonoBehaviour
     private Rigidbody2D birdRgbd;
     private bool dead;
     private PipeInfiniteScroll pipeInfiniteScroll;
+    private Animator birdAnim;
 
     [SerializeField] private Vector2 force;
     [SerializeField] private float rotation;
@@ -22,6 +23,8 @@ public class BirdController : MonoBehaviour
     [SerializeField] private string gameScene = "Game";
 
     [SerializeField] protected UnityEvent onDeath;
+    [SerializeField] protected UnityEvent onBegun;
+    private bool begun = false;
     [HideInInspector] public Action <int> onScorePoint;
 
 
@@ -29,7 +32,7 @@ public class BirdController : MonoBehaviour
     
     void Start()
     {
-        
+        birdAnim = GetComponent<Animator>();
         birdRgbd = GetComponent<Rigidbody2D>();
         pipeInfiniteScroll = FindObjectOfType<PipeInfiniteScroll>();
     }
@@ -58,6 +61,9 @@ public class BirdController : MonoBehaviour
     {
         if(dead == false && contagemStart <= 0 && transform.position.y < teto)
         {
+            if(begun == false)
+                onBegun?.Invoke();
+
             Debug.Log("Flap");
 
             if(pipeInfiniteScroll != null)
@@ -78,6 +84,7 @@ public class BirdController : MonoBehaviour
     private void Death()
     {
         dead = true;
+        birdAnim.speed = 0;
         InfiniteScroll[] allScrolls = FindObjectsOfType<InfiniteScroll>();
 
         foreach (InfiniteScroll scroll in allScrolls)
@@ -109,4 +116,6 @@ public class BirdController : MonoBehaviour
         }
             
     }
+
+    
 }
