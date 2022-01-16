@@ -674,6 +674,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 0}
+  currentScore: 0
 --- !u!222 &999793020
 CanvasRenderer:
   m_ObjectHideFlags: 0
