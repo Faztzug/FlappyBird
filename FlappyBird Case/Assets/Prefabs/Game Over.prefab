@@ -318,7 +318,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94c7e0e893beb5b48bb6a56b90387c53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeScoreCount: 1
+  waitToScoreCount: 2.5
+  timeScoreCount: 2.5
+  currentScoreCountValue: 0
+  scoreParts: 0
 --- !u!1 &6622775686505888218
 GameObject:
   m_ObjectHideFlags: 0

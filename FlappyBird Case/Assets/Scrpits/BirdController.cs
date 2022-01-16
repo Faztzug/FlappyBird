@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.SceneManagement;
 using System;
 
 public class BirdController : MonoBehaviour
@@ -112,7 +111,7 @@ public class BirdController : MonoBehaviour
         } else if (dead == true && contagemPosMorte <= 0)
         {
             
-                SceneManager.LoadScene(gameScene);
+                
             
         }
         

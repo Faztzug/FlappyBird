@@ -12,7 +12,10 @@ public class GameOver : MonoBehaviour
     private int bestScore;
     private TextMeshProUGUI score;
     private TextMeshProUGUI best;
+    [SerializeField] float waitToScoreCount = 1f;
     [SerializeField] float timeScoreCount = 1f;
+    public float currentScoreCountValue = 0;
+    public float scoreParts;
 
     private void Start()
     {
@@ -31,13 +34,53 @@ public class GameOver : MonoBehaviour
     public void EndGame()
     {
         anim.SetBool("GameOver", true);
-        scoreValue = FindObjectOfType<Score>().currentScore;
-        score.text = scoreValue.ToString();
+
+        //scoreValue = FindObjectOfType<Score>().currentScore;
+        //score.text = scoreValue.ToString();
+
+        StartCoroutine(ScoreCount(waitToScoreCount));
+
+
         if (scoreValue > bestScore)
             bestScore = scoreValue;
         best.text = bestScore.ToString();
 
         SaveGame();
+    }
+
+    IEnumerator ScoreCount(float wait)
+    {
+        yield return new WaitForSeconds(wait);
+
+        scoreValue = FindObjectOfType<Score>().currentScore;
+        
+
+        score.text = ((int)currentScoreCountValue).ToString();
+
+        scoreParts =  scoreValue * timeScoreCount/60;
+
+        StartCoroutine(ScoreCounting(timeScoreCount/60));
+
+
+    }
+
+    IEnumerator ScoreCounting(float wait)
+    {
+        yield return new WaitForSeconds(wait);
+
+        if (currentScoreCountValue < scoreValue)
+        {
+            currentScoreCountValue += scoreParts;
+            score.text = ((int)currentScoreCountValue).ToString();
+
+            Debug.Log("current Score Value: " + currentScoreCountValue);
+
+            StartCoroutine(ScoreCounting(wait));
+        }
+        else
+        {
+            score.text = scoreValue.ToString();
+        }
     }
 
 

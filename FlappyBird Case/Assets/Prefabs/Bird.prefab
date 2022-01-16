@@ -51,7 +51,7 @@ MonoBehaviour:
   rotation: 300
   gravity: 2.5
   getReadyFlapTime: 0.3
-  getReadyFlapMove: {x: 0, y: 0.6}
+  getReadyFlapMove: {x: 0, y: 0.4}
   contagemPosMorte: 1
   contagemStart: 1
   teto: 4.5
