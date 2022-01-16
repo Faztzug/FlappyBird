@@ -13,7 +13,8 @@ public class BirdController : MonoBehaviour
     private PipeInfiniteScroll pipeInfiniteScroll;
 
     [SerializeField] private Vector2 force;
-    
+    [SerializeField] private float rotation;
+
     [SerializeField] private float contagemPosMorte;
     [SerializeField] private float contagemStart;
     
@@ -45,6 +46,12 @@ public class BirdController : MonoBehaviour
                 contagemPosMorte -= 1 * Time.deltaTime;
             }
         }
+    }
+
+    private void FixedUpdate()
+    {
+        if(dead == false)
+        birdRgbd.MoveRotation((rotation * birdRgbd.velocity.y) * Time.fixedDeltaTime);
     }
 
     public void Flap()
