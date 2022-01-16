@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -171.20047, y: 130.6}
-  m_SizeDelta: {x: 114.7073, y: 116.0063}
+  m_AnchoredPosition: {x: -170.85367, y: 131.46704}
+  m_SizeDelta: {x: 115.4009, y: 115.6595}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3394885711392674969
 CanvasRenderer:
@@ -320,8 +320,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waitToScoreCount: 2.5
   timeScoreCount: 2.5
-  currentScoreCountValue: 0
-  scoreParts: 0
+  medalImage: {fileID: 70370523414539767}
+  tinMedal: {fileID: 1643155221146841879, guid: 3546e069a80621445ace4070bb0cfa23, type: 3}
+  bronzeMedal: {fileID: 2560398875629629500, guid: 3546e069a80621445ace4070bb0cfa23, type: 3}
+  silverMedal: {fileID: 1687489963281649004, guid: 3546e069a80621445ace4070bb0cfa23, type: 3}
+  goldMedal: {fileID: -1109645456820774316, guid: 3546e069a80621445ace4070bb0cfa23, type: 3}
 --- !u!1 &6622775686505888218
 GameObject:
   m_ObjectHideFlags: 0

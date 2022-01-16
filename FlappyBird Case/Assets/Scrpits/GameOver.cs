@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using UnityEngine.UI;
 
 public class GameOver : MonoBehaviour
 {
@@ -14,8 +15,14 @@ public class GameOver : MonoBehaviour
     private TextMeshProUGUI best;
     [SerializeField] float waitToScoreCount = 1f;
     [SerializeField] float timeScoreCount = 1f;
-    public float currentScoreCountValue = 0;
-    public float scoreParts;
+    private float currentScoreCountValue = 0;
+    private float scoreParts;
+
+    [SerializeField] private Image medalImage;
+    [SerializeField] private Sprite tinMedal;
+    [SerializeField] private Sprite bronzeMedal;
+    [SerializeField] private Sprite silverMedal;
+    [SerializeField] private Sprite goldMedal;
 
     private void Start()
     {
@@ -35,10 +42,13 @@ public class GameOver : MonoBehaviour
     {
         anim.SetBool("GameOver", true);
 
+        scoreValue = FindObjectOfType<Score>().currentScore;
         //scoreValue = FindObjectOfType<Score>().currentScore;
         //score.text = scoreValue.ToString();
 
         best.text = bestScore.ToString();
+
+        Medal();
 
         StartCoroutine(ScoreCount(waitToScoreCount));
 
@@ -46,11 +56,38 @@ public class GameOver : MonoBehaviour
         
     }
 
+    private void Medal()
+    {
+        if(scoreValue < 4)
+        {
+
+        }else if (scoreValue < 10)
+        {
+            medalImage.color = Color.white;
+            medalImage.sprite = tinMedal;
+        }
+        else if (scoreValue < 20)
+        {
+            medalImage.color = Color.white;
+            medalImage.sprite = bronzeMedal;
+        }
+        else if (scoreValue < 35)
+        {
+            medalImage.color = Color.white;
+            medalImage.sprite = silverMedal;
+        }
+        else if (scoreValue >= 35)
+        {
+            medalImage.color = Color.white;
+            medalImage.sprite = goldMedal;
+        }
+    }
+
     IEnumerator ScoreCount(float wait)
     {
         yield return new WaitForSeconds(wait);
 
-        scoreValue = FindObjectOfType<Score>().currentScore;
+        
         
 
         score.text = ((int)currentScoreCountValue).ToString();
