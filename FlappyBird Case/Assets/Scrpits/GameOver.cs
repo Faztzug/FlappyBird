@@ -11,8 +11,10 @@ public class GameOver : MonoBehaviour
     private Animator anim;
     private int scoreValue;
     private int bestScore;
-    private TextMeshProUGUI score;
-    private TextMeshProUGUI best;
+    private ScoreToSprite score;
+    private ScoreToSprite best;
+    //private TextMeshProUGUI score;
+    //private TextMeshProUGUI best;
     [SerializeField] float waitToScoreCount = 1f;
     [SerializeField] float timeScoreCount = 1f;
     private float currentScoreCountValue = 0;
@@ -35,7 +37,7 @@ public class GameOver : MonoBehaviour
     {
         anim = GetComponent<Animator>();
 
-        TextMeshProUGUI[] texts = transform.GetComponentsInChildren<TextMeshProUGUI>();
+        ScoreToSprite[] texts = transform.GetComponentsInChildren<ScoreToSprite>();
 
         score = texts[0];
         best = texts[1];
@@ -57,7 +59,8 @@ public class GameOver : MonoBehaviour
             //scoreValue = FindObjectOfType<Score>().currentScore;
             //score.text = scoreValue.ToString();
 
-            best.text = bestScore.ToString();
+            //best.text = bestScore.ToString();
+            best.UpdateScore(bestScore);
 
             Medal();
 
@@ -120,10 +123,11 @@ public class GameOver : MonoBehaviour
     {
         yield return new WaitForSeconds(wait);
 
-        
-        
 
-        score.text = ((int)currentScoreCountValue).ToString();
+
+
+        //score.text = ((int)currentScoreCountValue).ToString();
+        score.UpdateScore((int)currentScoreCountValue);
 
         scoreParts =  scoreValue * timeScoreCount/60;
 
@@ -139,7 +143,8 @@ public class GameOver : MonoBehaviour
         if (currentScoreCountValue < scoreValue)
         {
             currentScoreCountValue += scoreParts;
-            score.text = ((int)currentScoreCountValue).ToString();
+            //score.text = ((int)currentScoreCountValue).ToString();
+            score.UpdateScore((int)currentScoreCountValue);
 
             //Debug.Log("current Score Value: " + currentScoreCountValue);
 
@@ -147,13 +152,15 @@ public class GameOver : MonoBehaviour
         }
         else
         {
-            score.text = scoreValue.ToString();
+            //score.text = scoreValue.ToString();
+            score.UpdateScore(scoreValue);
 
             if (scoreValue > bestScore)
             {
                 newImage.color = Color.white;
                 bestScore = scoreValue;
-                best.text = bestScore.ToString();
+                //best.text = bestScore.ToString();
+                best.UpdateScore(bestScore);
 
                 SaveGame();
             }
