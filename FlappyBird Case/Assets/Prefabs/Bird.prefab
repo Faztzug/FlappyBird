@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 265612264}
   - component: {fileID: 265612263}
   - component: {fileID: 854746274}
+  - component: {fileID: 1848013400967740628}
   m_Layer: 3
   m_Name: Bird
   m_TagString: Untagged
@@ -55,7 +56,6 @@ MonoBehaviour:
   contagemPosMorte: 1
   contagemStart: 1
   teto: 4.5
-  gameScene: Game
   onDeath:
     m_PersistentCalls:
       m_Calls:
@@ -193,3 +193,23 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1848013400967740628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7226244457083422769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af05e7c1d8d82794eb04c6cec8ef2706, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  randomChance:
+  - 28
+  - 50
+  - 100
+  animatiorControllers:
+  - {fileID: 9100000, guid: 0d0c5e91f64670444bd82d07081cf971, type: 2}
+  - {fileID: 9100000, guid: e718b1ef1f190ee4a9cf4bb78601a0ff, type: 2}
+  - {fileID: 9100000, guid: 456010043bd767c4a87ede0f7a42f3d2, type: 2}

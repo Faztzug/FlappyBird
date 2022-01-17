@@ -175,7 +175,7 @@ TextureImporter:
     second: Mobile - Flappy Bird - Version 12 Sprites_56
   - first:
       213: 5612758388853481413
-    second: BirB3
+    second: BirdB3
   - first:
       213: -3946434259477265086
     second: Mobile - Flappy Bird - Version 12 Sprites_58
@@ -1309,7 +1309,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BirB3
+      name: BirdB3
       rect:
         serializedVersion: 2
         x: 115

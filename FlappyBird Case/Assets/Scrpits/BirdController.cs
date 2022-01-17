@@ -25,7 +25,7 @@ public class BirdController : MonoBehaviour
     [SerializeField] private float contagemStart;
     
     [SerializeField] private float teto;
-    [SerializeField] private string gameScene = "Game";
+    
 
     [SerializeField] protected UnityEvent onDeath;
     [SerializeField] protected UnityEvent onBegun;
