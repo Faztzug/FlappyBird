@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 265612263}
   - component: {fileID: 854746274}
   - component: {fileID: 1848013400967740628}
+  - component: {fileID: 1298264531336761861}
   m_Layer: 3
   m_Name: Bird
   m_TagString: Untagged
@@ -213,3 +214,40 @@ MonoBehaviour:
   - {fileID: 9100000, guid: 0d0c5e91f64670444bd82d07081cf971, type: 2}
   - {fileID: 9100000, guid: e718b1ef1f190ee4a9cf4bb78601a0ff, type: 2}
   - {fileID: 9100000, guid: 456010043bd767c4a87ede0f7a42f3d2, type: 2}
+--- !u!114 &1298264531336761861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7226244457083422769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82bbccb74b11f514c8251211a89c7a59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - clip: {fileID: 8300000, guid: 88834fe6e882e8d429b701d20a359488, type: 3}
+    name: Flap
+    volume: 1
+    pitch: 1
+    loop: 0
+    audioSource: {fileID: 0}
+  - clip: {fileID: 8300000, guid: f175ad99adcfbbf40bddd53e65556861, type: 3}
+    name: Point
+    volume: 1
+    pitch: 1
+    loop: 0
+    audioSource: {fileID: 0}
+  - clip: {fileID: 8300000, guid: fd8f10f4363f9d84c81d25c565459fd4, type: 3}
+    name: Hit
+    volume: 1
+    pitch: 1
+    loop: 0
+    audioSource: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 70bda385486da3d4ba40e1ea2b65245a, type: 3}
+    name: Death
+    volume: 1
+    pitch: 1
+    loop: 0
+    audioSource: {fileID: 0}

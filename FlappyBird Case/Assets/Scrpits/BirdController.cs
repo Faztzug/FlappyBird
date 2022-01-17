@@ -32,14 +32,26 @@ public class BirdController : MonoBehaviour
     private bool begun = false;
     [HideInInspector] public Action <int> onScorePoint;
 
+    private SFXPlayer sfxPlayer;
+    private string flapSFX;
+    private string pointSFX;
+    private string hitSFX;
+    private string deathSFX;
 
 
-    
+
+
+
     void Start()
     {
         birdAnim = GetComponent<Animator>();
         birdRgbd = GetComponent<Rigidbody2D>();
         pipeInfiniteScroll = FindObjectOfType<PipeInfiniteScroll>();
+        sfxPlayer = GetComponent<SFXPlayer>();
+        flapSFX = sfxPlayer.sounds[0].name;
+        pointSFX = sfxPlayer.sounds[1].name;
+        hitSFX = sfxPlayer.sounds[2].name;
+        deathSFX = sfxPlayer.sounds[3].name;
     }
 
     
@@ -106,8 +118,12 @@ public class BirdController : MonoBehaviour
             if(pipeInfiniteScroll != null)
             pipeInfiniteScroll.enabled = true;
 
+            sfxPlayer.PlayAudio(flapSFX);
+
             birdRgbd.velocity = Vector2.zero;
             birdRgbd.AddForce(force, ForceMode2D.Impulse);
+
+
         } else if (dead == true && contagemPosMorte <= 0)
         {
             
@@ -120,16 +136,24 @@ public class BirdController : MonoBehaviour
 
     private void Death()
     {
-        dead = true;
-        birdAnim.speed = 0;
-        InfiniteScroll[] allScrolls = FindObjectsOfType<InfiniteScroll>();
-
-        foreach (InfiniteScroll scroll in allScrolls)
+        if(dead == false)
         {
-            scroll.enabled = false;
+            sfxPlayer.PlayAudio(hitSFX);
+            sfxPlayer.PlayAudio(deathSFX);
+
+            birdAnim.speed = 0;
+            InfiniteScroll[] allScrolls = FindObjectsOfType<InfiniteScroll>();
+
+            foreach (InfiniteScroll scroll in allScrolls)
+            {
+                scroll.enabled = false;
+            }
+
+            onDeath?.Invoke();
         }
 
-        onDeath?.Invoke();
+        dead = true;
+        
 
     }
 
@@ -149,6 +173,7 @@ public class BirdController : MonoBehaviour
         {
             
             onScorePoint?.Invoke(1);
+            sfxPlayer.PlayAudio(pointSFX);
             collision.GetComponent<BoxCollider2D>().enabled = false;
         }
             
