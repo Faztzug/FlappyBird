@@ -20,9 +20,16 @@ public class GameOver : MonoBehaviour
 
     [SerializeField] private Image medalImage;
     [SerializeField] private Sprite tinMedal;
+    [SerializeField] private int tinRemoveSparkles;
     [SerializeField] private Sprite bronzeMedal;
+    [SerializeField] private int bronzeRemoveSparkles;
     [SerializeField] private Sprite silverMedal;
+    [SerializeField] private int silverRemoveSparkles;
     [SerializeField] private Sprite goldMedal;
+
+    [SerializeField] private Image newImage;
+
+    private bool endCalled = false;
 
     private void Start()
     {
@@ -40,39 +47,51 @@ public class GameOver : MonoBehaviour
 
     public void EndGame()
     {
-        anim.SetBool("GameOver", true);
+        if(endCalled == false)
+        {
+            endCalled = true;
 
-        scoreValue = FindObjectOfType<Score>().currentScore;
-        //scoreValue = FindObjectOfType<Score>().currentScore;
-        //score.text = scoreValue.ToString();
+            anim.SetBool("GameOver", true);
 
-        best.text = bestScore.ToString();
+            scoreValue = FindObjectOfType<Score>().currentScore;
+            //scoreValue = FindObjectOfType<Score>().currentScore;
+            //score.text = scoreValue.ToString();
 
-        Medal();
+            best.text = bestScore.ToString();
 
-        StartCoroutine(ScoreCount(waitToScoreCount));
+            Medal();
 
+            StartCoroutine(ScoreCount(waitToScoreCount));
 
-        
+        }
     }
 
     private void Medal()
     {
         if(scoreValue < 4)
         {
-
-        }else if (scoreValue < 10)
+            foreach (Sparkle item in GetComponentsInChildren<Sparkle>())
+            {
+                item.gameObject.SetActive(false);
+            }
+        }else if (scoreValue >= 4 && scoreValue < 10)
         {
+            MedalSparkleRemove(tinRemoveSparkles);
+
             medalImage.color = Color.white;
             medalImage.sprite = tinMedal;
         }
-        else if (scoreValue < 20)
+        else if (scoreValue >= 10 && scoreValue < 20)
         {
+            MedalSparkleRemove(bronzeRemoveSparkles);
+
             medalImage.color = Color.white;
             medalImage.sprite = bronzeMedal;
         }
-        else if (scoreValue < 35)
+        else if (scoreValue >= 20 && scoreValue < 35)
         {
+            MedalSparkleRemove(silverRemoveSparkles);
+            
             medalImage.color = Color.white;
             medalImage.sprite = silverMedal;
         }
@@ -80,6 +99,20 @@ public class GameOver : MonoBehaviour
         {
             medalImage.color = Color.white;
             medalImage.sprite = goldMedal;
+        }
+    }
+
+    private void MedalSparkleRemove(int removeN)
+    {
+        Sparkle[] sparkles = GetComponentsInChildren<Sparkle>();
+
+        Debug.Log("Sparkles: " + sparkles.Length);
+
+        for (int i = 0; i < removeN; i++)
+        {
+            sparkles[i].gameObject.SetActive(false);
+
+            //Debug.Log("Removed " + (i + 1) + " Sparkles.");
         }
     }
 
@@ -108,7 +141,7 @@ public class GameOver : MonoBehaviour
             currentScoreCountValue += scoreParts;
             score.text = ((int)currentScoreCountValue).ToString();
 
-            Debug.Log("current Score Value: " + currentScoreCountValue);
+            //Debug.Log("current Score Value: " + currentScoreCountValue);
 
             StartCoroutine(ScoreCounting(wait));
         }
@@ -118,6 +151,7 @@ public class GameOver : MonoBehaviour
 
             if (scoreValue > bestScore)
             {
+                newImage.color = Color.white;
                 bestScore = scoreValue;
                 best.text = bestScore.ToString();
 
