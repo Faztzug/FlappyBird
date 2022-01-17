@@ -61,10 +61,10 @@ TextureImporter:
     second: Mobile - Flappy Bird - Version 12 Sprites_18
   - first:
       213: 4649278624061740554
-    second: Mobile - Flappy Bird - Version 12 Sprites_19
+    second: Menu Box
   - first:
       213: 4229129803915167851
-    second: Mobile - Flappy Bird - Version 12 Sprites_20
+    second: Blank Button
   - first:
       213: 5755995480342360952
     second: Mobile - Flappy Bird - Version 12 Sprites_21
@@ -103,7 +103,7 @@ TextureImporter:
     second: Mobile - Flappy Bird - Version 12 Sprites_32
   - first:
       213: -5779524432928888368
-    second: Mobile - Flappy Bird - Version 12 Sprites_33
+    second: Unpause Button
   - first:
       213: -3849540773915607897
     second: 2
@@ -136,7 +136,7 @@ TextureImporter:
     second: Mobile - Flappy Bird - Version 12 Sprites_43
   - first:
       213: 4495249375143456610
-    second: Mobile - Flappy Bird - Version 12 Sprites_44
+    second: Whithe Block
   - first:
       213: 875370270028939571
     second: Mobile - Flappy Bird - Version 12 Sprites_45
@@ -151,7 +151,7 @@ TextureImporter:
     second: Gold Medal
   - first:
       213: -6271202071706072646
-    second: Mobile - Flappy Bird - Version 12 Sprites_49
+    second: PauseButton
   - first:
       213: -5116034788630571233
     second: Mobile - Flappy Bird - Version 12 Sprites_50
@@ -805,15 +805,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mobile - Flappy Bird - Version 12 Sprites_33
+      name: Unpause Button
       rect:
         serializedVersion: 2
         x: 334
         y: 356
         width: 13
         height: 14
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1036,15 +1036,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mobile - Flappy Bird - Version 12 Sprites_44
+      name: Whithe Block
       rect:
         serializedVersion: 2
         x: 292
         y: 272
         width: 16
         height: 16
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1141,15 +1141,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mobile - Flappy Bird - Version 12 Sprites_49
+      name: PauseButton
       rect:
         serializedVersion: 2
         x: 121
         y: 192
         width: 13
         height: 14
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1892,6 +1892,48 @@ TextureImporter:
       bones: []
       spriteID: 14cd3d808e2ba8170800000000000000
       internalID: 8181548382722186305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Menu Box
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 196
+        width: 57
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 6, y: 6, z: 6, w: 6}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a065401964e858040800000000000000
+      internalID: 4649278624061740554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blank Button
+      rect:
+        serializedVersion: 2
+        x: 414
+        y: 332
+        width: 52
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 4, y: 5, z: 4, w: 4}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6881675623e0ba30800000000000000
+      internalID: 4229129803915167851
       vertices: []
       indices: 
       edges: []
