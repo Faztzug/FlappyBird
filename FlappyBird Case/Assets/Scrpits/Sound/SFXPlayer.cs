@@ -12,13 +12,13 @@ public class SFXPlayer : MonoBehaviour
 
     private void Awake()
     {
-        
+        LoadSettings();
 
         foreach (Sound sound in sounds)
         {
             sound.audioSource = gameObject.AddComponent<AudioSource>();
             sound.audioSource.clip = sound.clip;
-            sound.audioSource.volume = sound.volume;
+            sound.audioSource.volume = sound.volume * overallVolume;
             sound.audioSource.pitch = sound.pitch;
             sound.audioSource.loop = sound.loop = false;
 
@@ -31,7 +31,10 @@ public class SFXPlayer : MonoBehaviour
 
         allAudioSources = GetComponents<AudioSource>();
 
-        UpdateVolume(overallVolume);
+        //UpdateVolume(overallVolume);
+
+        
+        
     }
 
     
@@ -90,6 +93,23 @@ public class SFXPlayer : MonoBehaviour
             allAudioSources[i].volume = sounds[i].volume * overallVolume;
         }
 
-        
+        SaveSettings();
     }
+
+
+    private void LoadSettings()
+    {
+        
+        overallVolume = PlayerPrefs.GetFloat("SFXVolume");
+        
+        //UpdateVolume(overallVolume);
+    }
+
+    private void SaveSettings()
+    {
+
+        PlayerPrefs.SetFloat("SFXVolume", overallVolume);
+
+    }
+
 }

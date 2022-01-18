@@ -58,6 +58,7 @@ MonoBehaviour:
   contagemStart: 1
   teto: 4.5
   maximumSpeed: 2
+  overralSpeed: 0
   overralSpeedIncrementPerPoint: 0.01
   onDeath:
     m_PersistentCalls:
@@ -250,6 +251,12 @@ MonoBehaviour:
     audioSource: {fileID: 0}
   - clip: {fileID: 8300000, guid: 70bda385486da3d4ba40e1ea2b65245a, type: 3}
     name: Death
+    volume: 1
+    pitch: 1
+    loop: 0
+    audioSource: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 169de2cc0d529e6418a9efa2e72f16bb, type: 3}
+    name: Button
     volume: 1
     pitch: 1
     loop: 0

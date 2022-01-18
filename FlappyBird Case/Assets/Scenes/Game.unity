@@ -1046,6 +1046,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 758135288}
+        m_TargetAssemblyTypeName: ButtonSound, Assembly-CSharp
+        m_MethodName: PlayAudio
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Button
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &573847142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1273,6 +1285,7 @@ GameObject:
   m_Component:
   - component: {fileID: 758135286}
   - component: {fileID: 758135287}
+  - component: {fileID: 758135288}
   m_Layer: 5
   m_Name: Pause
   m_TagString: Untagged
@@ -1317,6 +1330,18 @@ MonoBehaviour:
   unpauseWait: 3
   isPaused: 0
   pauseMenu: {fileID: 698692984}
+--- !u!114 &758135288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 758135285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b4a0696389650c44bc350928b7ca6a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &777695195 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1661992862165056288, guid: f2f56225289ae9946ba0a7b1ef8c1fbd, type: 3}
@@ -2310,6 +2335,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 758135288}
+        m_TargetAssemblyTypeName: ButtonSound, Assembly-CSharp
+        m_MethodName: PlayAudio
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Button
           m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1423556943

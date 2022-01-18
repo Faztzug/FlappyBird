@@ -1313,6 +1313,7 @@ MonoBehaviour:
   - {fileID: 879397671}
   - {fileID: 1669203745}
   partWidth: 6.72
+  overralSpeed: 1
 --- !u!1 &2135555082
 GameObject:
   m_ObjectHideFlags: 0
@@ -1349,6 +1350,7 @@ MonoBehaviour:
   - {fileID: 1176669118}
   - {fileID: 1718488221}
   partWidth: 5.76
+  overralSpeed: 1
 --- !u!4 &2135555084
 Transform:
   m_ObjectHideFlags: 0

@@ -14,11 +14,13 @@ public class MusicPlayer : MonoBehaviour
 
     private void Start()
     {
+        LoadSettings();
+
         foreach (Sound sound in sounds)
         {
             sound.audioSource = gameObject.AddComponent<AudioSource>();
             sound.audioSource.clip = sound.clip;
-            sound.audioSource.volume = sound.volume;
+            sound.audioSource.volume = sound.volume * overallVolume;
             sound.audioSource.pitch = sound.pitch;
             sound.audioSource.loop = sound.loop;
         }
@@ -27,7 +29,8 @@ public class MusicPlayer : MonoBehaviour
 
         allAudioSources = GetComponents<AudioSource>();
 
-        UpdateVolume(overallVolume);
+        //UpdateVolume(overallVolume);
+        
     }
 
     public void ChangeMusic(string name)
@@ -87,6 +90,22 @@ public class MusicPlayer : MonoBehaviour
             allAudioSources[i].volume = sounds[i].volume * overallVolume;
         }
 
+        SaveSettings();
+    }
 
+    private void LoadSettings()
+    {
+
+        overallVolume = PlayerPrefs.GetFloat("MusicVolume");
+
+        //UpdateVolume(overallVolume);
+    }
+
+    private void SaveSettings()
+    {
+
+        PlayerPrefs.SetFloat("MusicVolume", overallVolume);
+
+        
     }
 }
