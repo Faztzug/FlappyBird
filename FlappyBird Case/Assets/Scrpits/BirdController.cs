@@ -1,12 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.Events;
-using System;
 
 public class BirdController : MonoBehaviour
 {
-
     private Rigidbody2D birdRgbd;
     private bool dead = false;
     private bool begun = false;
@@ -24,13 +21,20 @@ public class BirdController : MonoBehaviour
 
     [SerializeField] private float contagemPosMorte;
     [SerializeField] private float contagemStart;
-    
+
     [SerializeField] private float teto;
-    
+
+    [SerializeField] private float maximumSpeed = 2f;
+
+    [Range(1, 4)]
+    [SerializeField] private float overralSpeed;
+
+    [SerializeField] private float overralSpeedIncrementPerPoint = 0.01f;
+    [HideInInspector] private Action<float> onOverralScrollSpeed;
 
     [SerializeField] protected UnityEvent onDeath;
     [SerializeField] protected UnityEvent onBegun;
-    [HideInInspector] public Action <int> onScorePoint;
+    [HideInInspector] public Action<int> onScorePoint;
 
     private SFXPlayer sfxPlayer;
     private string flapSFX;
@@ -40,11 +44,7 @@ public class BirdController : MonoBehaviour
 
     [HideInInspector] public PauseGame pause;
 
-
-
-
-
-    void Start()
+    private void Start()
     {
         birdAnim = GetComponent<Animator>();
         birdRgbd = GetComponent<Rigidbody2D>();
@@ -54,18 +54,22 @@ public class BirdController : MonoBehaviour
         pointSFX = sfxPlayer.sounds[1].name;
         hitSFX = sfxPlayer.sounds[2].name;
         deathSFX = sfxPlayer.sounds[3].name;
+
+        overralSpeed = 1f;
+
+        foreach (InfiniteScroll infiniteScroll in FindObjectsOfType<InfiniteScroll>())
+        {
+            onOverralScrollSpeed += infiniteScroll.updateOverralSpeed;
+        }
     }
 
-    
-    void Update()
+    private void Update()
     {
-        
-
         if (contagemStart > 0) contagemStart -= 1 * Time.deltaTime;
 
         if (dead)
         {
-            if(contagemPosMorte > 0)
+            if (contagemPosMorte > 0)
             {
                 contagemPosMorte -= 1 * Time.deltaTime;
             }
@@ -77,7 +81,7 @@ public class BirdController : MonoBehaviour
         GetReadyMove();
 
         if (dead == false)
-        birdRgbd.MoveRotation((rotation * birdRgbd.velocity.y) * Time.fixedDeltaTime);
+            birdRgbd.MoveRotation((rotation * birdRgbd.velocity.y) * Time.fixedDeltaTime);
     }
 
     private void GetReadyMove()
@@ -88,58 +92,49 @@ public class BirdController : MonoBehaviour
             {
                 getReadyFlapTimeCounter += 1 * Time.fixedDeltaTime;
 
-                if(getReadyFlapUp == true)
+                if (getReadyFlapUp == true)
                     birdRgbd.MovePosition(birdRgbd.position + getReadyFlapMove * Time.fixedDeltaTime);
                 else
                     birdRgbd.MovePosition(birdRgbd.position - getReadyFlapMove * Time.fixedDeltaTime);
-            } else if (getReadyFlapTimeCounter > getReadyFlapTime)
+            }
+            else if (getReadyFlapTimeCounter > getReadyFlapTime)
             {
                 getReadyFlapTimeCounter = 0f;
                 getReadyFlapUp = !getReadyFlapUp;
             }
-
-
-
         }
     }
 
     public void Flap()
     {
-        if(dead == false && contagemStart <= 0 && transform.position.y < teto)
+        if (dead == false && contagemStart <= 0 && transform.position.y < teto)
         {
-            if(begun == false)
+            if (begun == false)
             {
                 onBegun?.Invoke();
                 begun = true;
                 birdRgbd.gravityScale = gravity;
             }
-                
 
             Debug.Log("Flap");
 
-            if(pipeInfiniteScroll != null)
-            pipeInfiniteScroll.enabled = true;
+            if (pipeInfiniteScroll != null)
+                pipeInfiniteScroll.enabled = true;
 
-            if(pause.isPaused == false)
-            sfxPlayer.PlayAudio(flapSFX);
+            if (pause.isPaused == false)
+                sfxPlayer.PlayAudio(flapSFX);
 
             birdRgbd.velocity = Vector2.zero;
             birdRgbd.AddForce(force, ForceMode2D.Impulse);
-
-
-        } else if (dead == true && contagemPosMorte <= 0)
-        {
-            
-                
-            
         }
-        
-
+        else if (dead == true && contagemPosMorte <= 0)
+        {
+        }
     }
 
     private void Death()
     {
-        if(dead == false)
+        if (dead == false)
         {
             sfxPlayer.PlayAudio(hitSFX);
             sfxPlayer.PlayAudio(deathSFX);
@@ -156,11 +151,7 @@ public class BirdController : MonoBehaviour
         }
 
         dead = true;
-        
-
     }
-
-    
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -174,12 +165,21 @@ public class BirdController : MonoBehaviour
     {
         if (collision.CompareTag("Score"))
         {
-            
-            onScorePoint?.Invoke(1);
+            if (overralSpeed < maximumSpeed)
+            {
+                onScorePoint?.Invoke(1);
+
+                overralSpeed += overralSpeedIncrementPerPoint;
+                onOverralScrollSpeed?.Invoke(overralSpeed);
+            }
+            else
+            {
+                onScorePoint?.Invoke(2);
+            }
+
             sfxPlayer.PlayAudio(pointSFX);
             collision.GetComponent<BoxCollider2D>().enabled = false;
         }
-            
     }
 
     public bool IsPlaying()
@@ -189,6 +189,4 @@ public class BirdController : MonoBehaviour
         else
             return false;
     }
-
-    
 }

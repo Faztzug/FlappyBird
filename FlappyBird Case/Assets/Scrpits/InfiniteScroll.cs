@@ -10,6 +10,9 @@ public class InfiniteScroll : MonoBehaviour
     [SerializeField] private float partWidth;
     private int partsLength;
     protected Action <Transform> onScrollPartRecycle;
+
+    [Range(1,4)]
+    [SerializeField] private float overralSpeed = 1f;
     
     
 
@@ -35,7 +38,7 @@ public class InfiniteScroll : MonoBehaviour
         {
             if (part != null)
             {
-                part.Translate(scrollSpeed * Time.deltaTime);
+                part.Translate((scrollSpeed * overralSpeed) * Time.deltaTime);
 
                 if (part.position.x < partWidth * partsLength / 2 * -1)
                 {
@@ -47,5 +50,10 @@ public class InfiniteScroll : MonoBehaviour
             }
             
         }
+    }
+
+    public void updateOverralSpeed(float value)
+    {
+        overralSpeed = value;
     }
 }

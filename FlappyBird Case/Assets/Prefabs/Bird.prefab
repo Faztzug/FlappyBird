@@ -57,6 +57,8 @@ MonoBehaviour:
   contagemPosMorte: 1
   contagemStart: 1
   teto: 4.5
+  maximumSpeed: 2
+  overralSpeedIncrementPerPoint: 0.01
   onDeath:
     m_PersistentCalls:
       m_Calls:
@@ -87,6 +89,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  pause: {fileID: 0}
 --- !u!212 &3965501729872857664
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -251,3 +254,4 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     audioSource: {fileID: 0}
+  overallVolume: 1
