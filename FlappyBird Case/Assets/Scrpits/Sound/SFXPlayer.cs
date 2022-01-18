@@ -18,8 +18,8 @@ public class SFXPlayer : MonoBehaviour
         {
             sound.audioSource = gameObject.AddComponent<AudioSource>();
             sound.audioSource.clip = sound.clip;
-            sound.audioSource.volume = sound.volume = 1f;
-            sound.audioSource.pitch = sound.pitch = 1;
+            sound.audioSource.volume = sound.volume;
+            sound.audioSource.pitch = sound.pitch;
             sound.audioSource.loop = sound.loop = false;
 
         }

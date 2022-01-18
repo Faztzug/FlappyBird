@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MusicPlayer : MonoBehaviour
@@ -7,10 +5,10 @@ public class MusicPlayer : MonoBehaviour
     [SerializeField] private Sound[] sounds;
     [SerializeField] private string playThis;
     private string CurrentPlaying;
+
     //[Range(0,1)]
     //public float overallVolume = 1;
     private AudioSource[] allAudioSources;
-
 
     private void Start()
     {
@@ -21,14 +19,11 @@ public class MusicPlayer : MonoBehaviour
             sound.audioSource.volume = sound.volume;
             sound.audioSource.pitch = sound.pitch;
             sound.audioSource.loop = sound.loop;
-
         }
 
         PlayAudio(playThis);
 
         allAudioSources = GetComponents<AudioSource>();
-
-        
     }
 
     public void ChangeMusic(string name)
@@ -36,12 +31,11 @@ public class MusicPlayer : MonoBehaviour
         if (CurrentPlaying == null)
             PlayAudio(name);
 
-        if(CurrentPlaying != name && CurrentPlaying != null)
+        if (CurrentPlaying != name && CurrentPlaying != null)
         {
             foreach (Sound sound in sounds)
             {
                 sound.audioSource.Stop();
-                
             }
 
             Debug.Log("Musica: " + CurrentPlaying + "alterada para: " + name);
@@ -58,10 +52,16 @@ public class MusicPlayer : MonoBehaviour
                 sound.audioSource.Play();
                 CurrentPlaying = sound.name;
             }
-                
         }
     }
 
-    
+    public void StopMusic()
+    {
+        foreach (Sound sound in sounds)
+        {
+            sound.audioSource.Stop();
+        }
 
+        CurrentPlaying = null;
+    }
 }
