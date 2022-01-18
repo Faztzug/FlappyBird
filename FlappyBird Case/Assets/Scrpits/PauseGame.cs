@@ -28,6 +28,7 @@ public class PauseGame : MonoBehaviour
         musicScroll = scrolls[0];
         sfxScroll = scrolls[1];
 
+
         sfxPlayer = FindObjectOfType<SFXPlayer>();
         musicPlayer = FindObjectOfType<MusicPlayer>();
 
@@ -35,6 +36,8 @@ public class PauseGame : MonoBehaviour
 
         pauseMenu.SetActive(false);
 
+        Debug.Log("Start sfxScroll.value " + sfxScroll.value);
+        Debug.Log("Start musicScroll.value " + musicScroll.value);
     }
 
     public void Pause()
@@ -73,11 +76,16 @@ public class PauseGame : MonoBehaviour
     private void SaveSettings()
     {
         PlayerPrefs.SetFloat("SFXVolume", sfxScroll.value);
+        Debug.Log("Save sfxScroll.value " + sfxScroll.value);
+
         PlayerPrefs.SetFloat("MusicVolume", musicScroll.value);
+        Debug.Log("Save musicScroll.value " + musicScroll.value);
     }
 
     private void LoadSettings()
     {
+        Debug.Log("sfxScroll.value " + sfxScroll.value);
+        Debug.Log("musicScroll.value " + musicScroll.value);
         sfxScroll.value = PlayerPrefs.GetFloat("SFXVolume");
         musicScroll.value = PlayerPrefs.GetFloat("MusicVolume");
         UpdateVolume();
