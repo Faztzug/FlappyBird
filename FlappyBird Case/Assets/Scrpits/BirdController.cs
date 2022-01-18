@@ -8,7 +8,8 @@ public class BirdController : MonoBehaviour
 {
 
     private Rigidbody2D birdRgbd;
-    private bool dead;
+    private bool dead = false;
+    private bool begun = false;
     private PipeInfiniteScroll pipeInfiniteScroll;
     private Animator birdAnim;
 
@@ -29,7 +30,6 @@ public class BirdController : MonoBehaviour
 
     [SerializeField] protected UnityEvent onDeath;
     [SerializeField] protected UnityEvent onBegun;
-    private bool begun = false;
     [HideInInspector] public Action <int> onScorePoint;
 
     private SFXPlayer sfxPlayer;
@@ -37,6 +37,8 @@ public class BirdController : MonoBehaviour
     private string pointSFX;
     private string hitSFX;
     private string deathSFX;
+
+    [HideInInspector] public PauseGame pause;
 
 
 
@@ -118,6 +120,7 @@ public class BirdController : MonoBehaviour
             if(pipeInfiniteScroll != null)
             pipeInfiniteScroll.enabled = true;
 
+            if(pause.isPaused == false)
             sfxPlayer.PlayAudio(flapSFX);
 
             birdRgbd.velocity = Vector2.zero;
@@ -177,6 +180,14 @@ public class BirdController : MonoBehaviour
             collision.GetComponent<BoxCollider2D>().enabled = false;
         }
             
+    }
+
+    public bool IsPlaying()
+    {
+        if (dead == false && begun == true)
+            return true;
+        else
+            return false;
     }
 
     
