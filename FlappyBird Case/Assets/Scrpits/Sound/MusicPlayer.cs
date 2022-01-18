@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MusicPlayer : MonoBehaviour
@@ -6,8 +8,8 @@ public class MusicPlayer : MonoBehaviour
     [SerializeField] private string playThis;
     private string CurrentPlaying;
 
-    //[Range(0,1)]
-    //public float overallVolume = 1;
+    [Range(0,1)]
+    public float overallVolume = 1;
     private AudioSource[] allAudioSources;
 
     private void Start()
@@ -24,6 +26,8 @@ public class MusicPlayer : MonoBehaviour
         PlayAudio(playThis);
 
         allAudioSources = GetComponents<AudioSource>();
+
+        UpdateVolume(overallVolume);
     }
 
     public void ChangeMusic(string name)
@@ -63,5 +67,26 @@ public class MusicPlayer : MonoBehaviour
         }
 
         CurrentPlaying = null;
+    }
+
+    public void UpdateVolume(float volume)
+    {
+        overallVolume = volume;
+        StartCoroutine(UpdateVolumeCourotine());
+    }
+
+    IEnumerator UpdateVolumeCourotine()
+    {
+        yield return new WaitForEndOfFrame();
+
+        int length = allAudioSources.Length;
+        Debug.Log("SFX Update Volume");
+
+        for (int i = 0; i < length; i++)
+        {
+            allAudioSources[i].volume = sounds[i].volume * overallVolume;
+        }
+
+
     }
 }

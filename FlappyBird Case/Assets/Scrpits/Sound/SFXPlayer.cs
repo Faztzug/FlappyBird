@@ -6,8 +6,8 @@ public class SFXPlayer : MonoBehaviour
 {
     public Sound[] sounds;
     
-    //[Range(0, 1)]
-    //public float overallVolume = 1;
+    [Range(0, 1)]
+    public float overallVolume = 1;
     private AudioSource[] allAudioSources;
 
     private void Awake()
@@ -31,7 +31,7 @@ public class SFXPlayer : MonoBehaviour
 
         allAudioSources = GetComponents<AudioSource>();
 
-        
+        UpdateVolume(overallVolume);
     }
 
     
@@ -70,5 +70,26 @@ public class SFXPlayer : MonoBehaviour
         {
             sfx.Stop();
         }
+    }
+
+    public void UpdateVolume(float volume)
+    {
+        overallVolume = volume;
+        StartCoroutine(UpdateVolumeCourotine());
+    }
+
+    IEnumerator UpdateVolumeCourotine()
+    {
+        yield return new WaitForEndOfFrame();
+
+        int length = allAudioSources.Length;
+        Debug.Log("SFX Update Volume");
+
+        for (int i = 0; i < length; i++)
+        {
+            allAudioSources[i].volume = sounds[i].volume * overallVolume;
+        }
+
+        
     }
 }
